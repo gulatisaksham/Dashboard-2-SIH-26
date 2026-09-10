@@ -11,10 +11,10 @@ import { generateAlerts, generateThresholds } from './alerts';
 // ── Persona Configurations ───────────────────────────────────
 
 const PERSONA_CONFIGS: PersonaConfig[] = [
-  // 1. KAMALA DEVI — Stable across all categories
+  // 1. BINA BARMAN — Stable across all categories
   {
     id: 'p-stable',
-    name: 'Kamala Devi',
+    name: 'Bina Barman',
     age: 72,
     avatarColor: '#1A6B5A',
     sessionCount: 35,
@@ -237,5 +237,5 @@ export function getPatientById(id: string): PatientData | undefined {
 }
 
 export function getDefaultPatientId(): string {
-  return 'p-face-delay'; // Rajesh — most interesting anomaly for default view
+  return 'p-stable'; // Bina Barman — matches the rest of the dashboard
 }

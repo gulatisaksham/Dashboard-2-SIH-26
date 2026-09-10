@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, PieChart, Pie, Cell
 } from 'recharts';
@@ -13,6 +13,12 @@ import { TRANSLATIONS } from './translations';
 import { SettingsPanel } from './components/settings/SettingsPanel';
 import { EmptyState } from './components/ui/EmptyState';
 import { InsightSummary } from './components/dashboard/InsightSummary';
+import { AnomalyOverview } from './components/anomaly/AnomalyOverview';
+import { AlertsPanel } from './components/alerts/AlertsPanel';
+import { PerformanceGrid } from './components/dashboard/PerformanceGrid';
+import { PatientSwitcher } from './components/layout/PatientSwitcher';
+import { getAllPatientData, getDefaultPatientId } from './data/personas';
+import type { PatientData } from './data/types';
 
 // MOCK DATA
 const gameTrendData = [
@@ -90,7 +96,29 @@ function detectDomainAnomaly(data: {week: string, places: number}[], baselineLen
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [showSettingsPanel, setShowSettingsPanel] = useState(false);
-  const [anomalyThreshold, setAnomalyThreshold] = useState(3);
+
+  // ── Patient / Persona state ────────────────────────────────
+  const allPatients = getAllPatientData();
+  const [selectedPatientId, setSelectedPatientId] = useState(getDefaultPatientId());
+  const [patientData, setPatientData] = useState<PatientData>(() =>
+    allPatients.find(p => p.patient.id === getDefaultPatientId())!
+  );
+  const [isPatientLoading, setIsPatientLoading] = useState(false);
+
+  const switchPatient = useCallback((id: string) => {
+    if (id === selectedPatientId) return;
+    setIsPatientLoading(true);
+    setSelectedPatientId(id);
+    // Simulate brief async load (data is actually synchronous but shows the skeleton)
+    setTimeout(() => {
+      const found = allPatients.find(p => p.patient.id === id);
+      if (found) setPatientData(found);
+      setIsPatientLoading(false);
+    }, 400);
+  }, [selectedPatientId, allPatients]);
+
+  const anomalyThreshold = 3;
+
   const [memoryFilter, setMemoryFilter] = useState('All');
   const [showNotifications, setShowNotifications] = useState(false);
   const [showAddMemoryModal, setShowAddMemoryModal] = useState(false);
@@ -200,7 +228,7 @@ export default function App() {
   };
 
   const navButtonClass = (tabName: string) => `
-    flex items-center w-full px-5 py-4 rounded-[16px] font-bold text-[17px] transition-colors min-h-[48px]
+    flex items-center w-full px-4 py-3 rounded-[12px] font-bold text-[14px] transition-colors min-h-[40px]
     ${activeTab === tabName 
       ? 'bg-[#5A4845] text-white shadow-sm' 
       : 'text-[#D5CDC4] hover:bg-[#4E3E3C] hover:text-white'
@@ -213,45 +241,61 @@ export default function App() {
       
       {/* SIDEBAR */}
       <aside className="w-[280px] bg-[#3E312F] text-[#F3EFEA] flex-col hidden xl:flex sticky top-0 h-screen overflow-y-auto shrink-0 shadow-lg z-20">
-        <div className="p-8 border-b border-white/10">
-          <button 
+        <div className="p-6 border-b border-white/10">
+          <h1 className="text-[20px] font-extrabold tracking-wide text-white opacity-90 mb-4">Memory Lane</h1>
+          {/* Current patient badge */}
+          <button
             onClick={() => setActiveTab('profile')}
-            className="flex items-center gap-4 mb-8 text-left hover:opacity-80 transition-opacity cursor-pointer"
+            className="flex items-center gap-3 w-full text-left hover:opacity-80 transition-opacity cursor-pointer"
           >
-            <div className="w-14 h-14 rounded-full bg-[#FAF9F6] border-2 border-teal-600/30 flex items-center justify-center overflow-hidden shrink-0 shadow-md">
-              <span className="text-[#3E312F] font-bold text-xl">BB</span>
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden shrink-0 shadow-md text-white font-bold text-sm"
+              style={{ backgroundColor: patientData.patient.avatarColor }}
+            >
+              {patientData.patient.initials}
             </div>
-            <div>
-              <h2 className="text-xl font-bold text-white tracking-wide">Bina Barman</h2>
-              <p className="text-[15px] font-medium text-[#D5CDC4]">{t.patient}</p>
+            <div className="min-w-0">
+              <h2 className="text-[15px] font-bold text-white truncate">{patientData.patient.name}</h2>
+              <p className="text-[12px] font-medium text-[#A89A98]">{t.patient} · Age {patientData.patient.age}</p>
             </div>
           </button>
-          <h1 className="text-[22px] font-extrabold tracking-wide text-white opacity-90">Memory Lane</h1>
         </div>
         
-        <nav className="flex-1 px-5 py-6 space-y-2.5">
+        <nav className="flex-1 px-4 py-5 space-y-1.5">
           <button onClick={() => setActiveTab('home')} className={navButtonClass('home')}>
-            <Home className="w-6 h-6 mr-4 opacity-90" /> {t.homeOverview}
+            <Home className="w-5 h-5 mr-3 opacity-90" /> {t.homeOverview}
           </button>
           <button onClick={() => setActiveTab('profile')} className={navButtonClass('profile')}>
-            <User className="w-6 h-6 mr-4 opacity-90" /> {t.personalProfile}
+            <User className="w-5 h-5 mr-3 opacity-90" /> {t.personalProfile}
+          </button>
+          <button onClick={() => setActiveTab('insights')} className={navButtonClass('insights')}>
+            <BrainCircuit className="w-5 h-5 mr-3 opacity-90" /> Cognitive Insights
           </button>
           <button onClick={() => setActiveTab('analytics')} className={navButtonClass('analytics')}>
-            <BrainCircuit className="w-6 h-6 mr-4 opacity-90" /> {t.gameAnalytics}
+            <Activity className="w-5 h-5 mr-3 opacity-90" /> {t.gameAnalytics}
           </button>
           <button onClick={() => setActiveTab('library')} className={navButtonClass('library')}>
-            <ImageIcon className="w-6 h-6 mr-4 opacity-90" /> {t.memoryLibrary}
+            <ImageIcon className="w-5 h-5 mr-3 opacity-90" /> {t.memoryLibrary}
           </button>
           <button onClick={() => setActiveTab('care')} className={navButtonClass('care')}>
-            <Pill className="w-6 h-6 mr-4 opacity-90" /> {t.careTracking}
+            <Pill className="w-5 h-5 mr-3 opacity-90" /> {t.careTracking}
           </button>
           <button onClick={() => setActiveTab('reports')} className={navButtonClass('reports')}>
-            <FileText className="w-6 h-6 mr-4 opacity-90" /> {t.reports}
+            <FileText className="w-5 h-5 mr-3 opacity-90" /> {t.reports}
           </button>
           <button onClick={() => setShowSettingsPanel(true)} className={navButtonClass('settings')}>
-            <Settings className="w-6 h-6 mr-4 opacity-90" /> {t.settings}
+            <Settings className="w-5 h-5 mr-3 opacity-90" /> {t.settings}
           </button>
         </nav>
+
+        {/* Patient Switcher */}
+        <div className="px-4 pb-6 border-t border-white/10 pt-4">
+          <PatientSwitcher
+            patients={allPatients.map(pd => pd.patient)}
+            selectedId={selectedPatientId}
+            onSelect={switchPatient}
+          />
+        </div>
       </aside>
 
       <div className="flex-1 flex flex-col min-w-0">
@@ -362,10 +406,72 @@ export default function App() {
             </div>
           )}
 
+          {/* TAB CONTENT: COGNITIVE INSIGHTS (NEW) */}
+          {activeTab === 'insights' && (
+            <div className="animate-in fade-in duration-300 space-y-10">
+              {/* Patient header */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center text-white font-extrabold text-xl shadow"
+                    style={{ backgroundColor: patientData.patient.avatarColor }}
+                  >
+                    {patientData.patient.initials}
+                  </div>
+                  <div>
+                    <h2 className="text-[26px] font-extrabold text-[#2D2422]">{patientData.patient.name}</h2>
+                    <div className="flex items-center gap-3 mt-1">
+                      <span className="text-[15px] font-semibold text-[#6D5E5B]">Age {patientData.patient.age}</span>
+                      <span className="text-slate-300">·</span>
+                      <span className="text-[15px] font-semibold text-[#6D5E5B]">{patientData.patient.totalSessions} total sessions</span>
+                      <span className={`text-[13px] font-bold px-3 py-1 rounded-full ${
+                        patientData.patient.riskTier === 'stable' ? 'bg-green-100 text-green-800' :
+                        patientData.patient.riskTier === 'monitor' ? 'bg-amber-100 text-amber-800' :
+                        'bg-red-100 text-red-800'
+                      }`}>
+                        {patientData.patient.riskTier === 'stable' ? '✓ Stable' :
+                         patientData.patient.riskTier === 'monitor' ? '⚠ Monitor' : '🔴 Attention Needed'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-[14px] font-semibold text-[#6D5E5B] bg-[#F4F1EC] px-4 py-2 rounded-xl">
+                  Last session: {patientData.patient.daysSinceLastSession === 0 ? 'Today' : `${patientData.patient.daysSinceLastSession} days ago`}
+                </p>
+              </div>
+
+              {/* Anomaly Detection */}
+              <div className="bg-white p-8 rounded-[24px] shadow-sm border border-[#E6E2DB]">
+                <AnomalyOverview
+                  anomalies={patientData.anomalies}
+                  isLoading={isPatientLoading}
+                />
+              </div>
+
+              {/* Caregiver Alerts */}
+              <div className="bg-white p-8 rounded-[24px] shadow-sm border border-[#E6E2DB]">
+                <AlertsPanel
+                  alerts={patientData.alerts}
+                  thresholds={patientData.thresholds}
+                  isLoading={isPatientLoading}
+                />
+              </div>
+
+              {/* Session Performance Grid */}
+              <div className="bg-white p-8 rounded-[24px] shadow-sm border border-[#E6E2DB]">
+                <PerformanceGrid
+                  sessions={patientData.sessions}
+                  isLoading={isPatientLoading}
+                />
+              </div>
+            </div>
+          )}
+
           {/* TAB CONTENT: HOME */}
           {activeTab === 'home' && (
             <div className="animate-in fade-in duration-300 space-y-10">
               <InsightSummary />
+
               <div className="mb-6">
                 <h2 className="text-[28px] font-extrabold text-[#2D2422]">{t.homeOverview}</h2>
                 <p className="text-[17px] font-semibold text-[#6D5E5B] mt-1">{t.overviewDesc}</p>
