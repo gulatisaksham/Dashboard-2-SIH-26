@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, PieChart, Pie, Cell
 } from 'recharts';
@@ -16,9 +17,9 @@ import { InsightSummary } from './components/dashboard/InsightSummary';
 import { AnomalyOverview } from './components/anomaly/AnomalyOverview';
 import { AlertsPanel } from './components/alerts/AlertsPanel';
 import { PerformanceGrid } from './components/dashboard/PerformanceGrid';
-import { PatientSwitcher } from './components/layout/PatientSwitcher';
-import { getAllPatientData, getDefaultPatientId } from './data/personas';
+import { usePatientContext } from './context/PatientContext';
 import type { PatientData } from './data/types';
+import { CareReport } from './components/reports/CareReport';
 
 // MOCK DATA
 const gameTrendData = [
@@ -98,26 +99,9 @@ export default function App() {
   const [showSettingsPanel, setShowSettingsPanel] = useState(false);
 
   // ── Patient / Persona state ────────────────────────────────
-  const allPatients = getAllPatientData();
-  const [selectedPatientId, setSelectedPatientId] = useState(getDefaultPatientId());
-  const [patientData, setPatientData] = useState<PatientData>(() =>
-    allPatients.find(p => p.patient.id === getDefaultPatientId())!
-  );
-  const [isPatientLoading, setIsPatientLoading] = useState(false);
+  const { allPatients, currentData: patientData, currentPatientId: selectedPatientId, isLoading: isPatientLoading, switchPatient, updateAlertStatus } = usePatientContext();
 
-  const switchPatient = useCallback((id: string) => {
-    if (id === selectedPatientId) return;
-    setIsPatientLoading(true);
-    setSelectedPatientId(id);
-    // Simulate brief async load (data is actually synchronous but shows the skeleton)
-    setTimeout(() => {
-      const found = allPatients.find(p => p.patient.id === id);
-      if (found) setPatientData(found);
-      setIsPatientLoading(false);
-    }, 400);
-  }, [selectedPatientId, allPatients]);
-
-  const anomalyThreshold = 3;
+  const [anomalyThreshold, setAnomalyThreshold] = useState(3);
 
   const [memoryFilter, setMemoryFilter] = useState('All');
   const [showNotifications, setShowNotifications] = useState(false);
@@ -130,6 +114,15 @@ export default function App() {
   const [newMemoryPhoto, setNewMemoryPhoto] = useState<string | null>(null);
   const [showLangMenu, setShowLangMenu] = useState(false);
   const [selectedLang, setSelectedLang] = useState('English');
+  const [isPreparingReport, setIsPreparingReport] = useState(false);
+
+  const handleDownloadReport = () => {
+    setIsPreparingReport(true);
+    setTimeout(() => {
+      window.print();
+      setTimeout(() => setIsPreparingReport(false), 500);
+    }, 100);
+  };
   const [careProgress, setCareProgress] = useState<{completed: number, total: number, subtasks?: Subtask[]}[]>([
     { completed: 5, total: 7 },
     { completed: 6, total: 8 },
@@ -269,7 +262,7 @@ export default function App() {
             <User className="w-5 h-5 mr-3 opacity-90" /> {t.personalProfile}
           </button>
           <button onClick={() => setActiveTab('insights')} className={navButtonClass('insights')}>
-            <BrainCircuit className="w-5 h-5 mr-3 opacity-90" /> Cognitive Insights
+            <BrainCircuit className="w-5 h-5 mr-3 opacity-90" /> {t.cognitiveInsights}
           </button>
           <button onClick={() => setActiveTab('analytics')} className={navButtonClass('analytics')}>
             <Activity className="w-5 h-5 mr-3 opacity-90" /> {t.gameAnalytics}
@@ -288,14 +281,7 @@ export default function App() {
           </button>
         </nav>
 
-        {/* Patient Switcher */}
-        <div className="px-4 pb-6 border-t border-white/10 pt-4">
-          <PatientSwitcher
-            patients={allPatients.map(pd => pd.patient)}
-            selectedId={selectedPatientId}
-            onSelect={switchPatient}
-          />
-        </div>
+
       </aside>
 
       <div className="flex-1 flex flex-col min-w-0">
@@ -311,7 +297,7 @@ export default function App() {
           </button>
           <div className="hidden xl:flex items-center text-[16px] font-bold text-[#5C4F4D] bg-[#F4F1EC] px-5 py-2.5 rounded-full shadow-sm">
             <Gamepad2 className="w-5 h-5 mr-3 text-teal-700" />
-            Last game played: 2 hours ago
+            {t.lastGamePlayed}
           </div>
           
           <div className="flex items-center gap-6">
@@ -454,6 +440,7 @@ export default function App() {
                   alerts={patientData.alerts}
                   thresholds={patientData.thresholds}
                   isLoading={isPatientLoading}
+                  onUpdateStatus={updateAlertStatus}
                 />
               </div>
 
@@ -899,9 +886,13 @@ export default function App() {
                   <p className="text-[20px] text-[#5C4F4D] mb-10 font-semibold leading-relaxed">
                     {t.reportsDesc}
                   </p>
-                  <button className="bg-teal-700 hover:bg-teal-800 text-white border-2 border-teal-700 px-10 py-5 rounded-2xl font-bold flex items-center justify-center mx-auto transition-colors shadow-md text-[20px] min-h-[56px]">
+                  <button
+                    onClick={handleDownloadReport}
+                    disabled={isPreparingReport}
+                    className="bg-teal-700 hover:bg-teal-800 disabled:opacity-70 text-white border-2 border-teal-700 px-10 py-5 rounded-2xl font-bold flex items-center justify-center mx-auto transition-colors shadow-md text-[20px] min-h-[56px]"
+                  >
                     <Download className="w-7 h-7 mr-4" />
-                    {t.downloadBtn}
+                    {isPreparingReport ? 'Preparing report…' : (t.downloadBtn || 'Download Session Stats')}
                   </button>
                 </div>
               </section>
@@ -918,6 +909,14 @@ export default function App() {
 
         </main>
       </div>
+
+      {/* Print-only Care Report — rendered via portal to body (outside app root) */}
+      {isPreparingReport && ReactDOM.createPortal(
+        <div id="care-report-print" aria-hidden="true">
+          <CareReport patientData={patientData} localAlerts={alerts} />
+        </div>,
+        document.body
+      )}
 
       {showAddNoteModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">

@@ -92,3 +92,105 @@ h3 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-muted);
 }
+
+/* ============================================================
+   Print Stylesheet — CareReport only
+   ============================================================ */
+@media print {
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+
+  /* Reset font-size so pt units work as expected */
+  html {
+    font-size: 12pt !important;
+  }
+
+  body {
+    background: white !important;
+    color: #111 !important;
+    font-family: "Inter", sans-serif !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hide everything in the normal app shell */
+  body > #root > div {
+    display: none !important;
+  }
+
+  /* Show only the print report container */
+  #care-report-print {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Report-level typography */
+  #care-report-print h1 {
+    font-family: "Fraunces", Georgia, serif !important;
+    font-size: 22pt !important;
+    color: #111 !important;
+  }
+
+  #care-report-print h2 {
+    font-family: "Fraunces", Georgia, serif !important;
+    font-size: 14pt !important;
+    color: #111 !important;
+  }
+
+  #care-report-print p,
+  #care-report-print td,
+  #care-report-print th,
+  #care-report-print li {
+    font-size: 11pt !important;
+    color: #111 !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Tables */
+  #care-report-print table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    break-inside: avoid !important;
+  }
+
+  #care-report-print th,
+  #care-report-print td {
+    border: 1px solid #888 !important;
+    padding: 6pt 8pt !important;
+  }
+
+  #care-report-print thead tr {
+    background-color: #f0f0f0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Sections should not break mid-content */
+  #care-report-print section,
+  #care-report-print .avoid-break {
+    break-inside: avoid !important;
+  }
+
+  /* No shadows or colored backgrounds on cards */
+  #care-report-print [class*="shadow"],
+  #care-report-print [class*="rounded"] {
+    box-shadow: none !important;
+  }
+
+  /* Remove screen-only scrollbar artifacts */
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+/* Hide print container on screen */
+#care-report-print {
+  display: none;
+}
+

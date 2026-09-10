@@ -1,15 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pill, Droplets, Calendar, AlertTriangle, CheckCheck } from 'lucide-react';
-import type { CaregiverAlert, AlertThreshold } from '../../data/types';
+import { Pill, Droplets, Calendar, AlertTriangle, CheckCheck, ChevronDown } from 'lucide-react';
+import type { CaregiverAlert, AlertThreshold, AlertStatus } from '../../data/types';
 import { EmptyState } from '../ui/EmptyState';
-
 import { Skeleton } from '../ui/Skeleton';
 
 interface AlertsPanelProps {
   alerts: CaregiverAlert[];
   thresholds: AlertThreshold[];
   isLoading?: boolean;
+  onUpdateStatus?: (alertId: string, newStatus: AlertStatus) => void;
 }
 
 const getAlertIcon = (type: CaregiverAlert['type']) => {
@@ -22,29 +22,64 @@ const getAlertIcon = (type: CaregiverAlert['type']) => {
   }
 };
 
-const StatusBadge = ({ status }: { status: CaregiverAlert['status'] }) => {
+const StatusBadge = ({ alertId, status, onUpdate }: { alertId: string, status: AlertStatus, onUpdate?: (id: string, st: AlertStatus) => void }) => {
   const colors: Record<string, string> = {
     sent: '#8A8A8A',
     acknowledged: '#276749',
     missed: '#C53030',
   };
+
+  if (!onUpdate) {
+    return (
+      <span style={{
+        backgroundColor: colors[status] || '#8A8A8A',
+        color: 'white',
+        padding: '2px 6px',
+        borderRadius: '4px',
+        fontSize: '10px',
+        textTransform: 'uppercase',
+        fontWeight: 600,
+        letterSpacing: '0.3px',
+      }}>
+        {status}
+      </span>
+    );
+  }
+
   return (
-    <span style={{
-      backgroundColor: colors[status] || '#8A8A8A',
-      color: 'white',
-      padding: '2px 6px',
-      borderRadius: '4px',
-      fontSize: '10px',
-      textTransform: 'uppercase',
-      fontWeight: 600,
-      letterSpacing: '0.3px',
-    }}>
-      {status}
-    </span>
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <select
+        value={status}
+        onChange={(e) => onUpdate(alertId, e.target.value as AlertStatus)}
+        style={{
+          appearance: 'none',
+          backgroundColor: colors[status] || '#8A8A8A',
+          color: 'white',
+          padding: '2px 20px 2px 6px',
+          borderRadius: '4px',
+          fontSize: '10px',
+          textTransform: 'uppercase',
+          fontWeight: 600,
+          letterSpacing: '0.3px',
+          border: 'none',
+          cursor: 'pointer',
+          outline: 'none',
+        }}
+      >
+        <option value="sent">SENT</option>
+        <option value="acknowledged">ACKNOWLEDGED</option>
+        <option value="missed">MISSED</option>
+      </select>
+      <ChevronDown 
+        size={10} 
+        color="white" 
+        style={{ position: 'absolute', right: '4px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} 
+      />
+    </div>
   );
 };
 
-export const AlertsPanel: React.FC<AlertsPanelProps> = ({ alerts, thresholds, isLoading }) => {
+export const AlertsPanel: React.FC<AlertsPanelProps> = ({ alerts, thresholds, isLoading, onUpdateStatus }) => {
   const { t } = useTranslation();
 
   return (
@@ -90,7 +125,7 @@ export const AlertsPanel: React.FC<AlertsPanelProps> = ({ alerts, thresholds, is
                     {new Date(alert.scheduledAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </td>
                   <td style={{ padding: '6px 12px' }}>
-                    <StatusBadge status={alert.status} />
+                    <StatusBadge alertId={alert.id} status={alert.status} onUpdate={onUpdateStatus} />
                   </td>
                 </tr>
               ))}

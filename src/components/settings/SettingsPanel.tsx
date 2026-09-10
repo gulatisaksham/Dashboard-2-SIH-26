@@ -25,8 +25,8 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
     { code: 'English', label: 'English' },
     { code: 'Hindi (हिंदी)', label: 'Hindi' },
     { code: 'Assamese (অসমীয়া)', label: 'Assamese' },
-    { code: 'Bengali (বাংলা)', label: 'Bengali', partial: true },
-    { code: 'Manipuri (মৈতৈলোন্)', label: 'Manipuri', partial: true },
+    { code: 'Bengali (বাংলা)', label: 'Bengali' },
+    { code: 'Manipuri (মৈতৈলোন্)', label: 'Manipuri' },
   ];
 
   const handleExport = () => {
