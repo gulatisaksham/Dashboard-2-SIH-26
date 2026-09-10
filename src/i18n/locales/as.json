@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "মেম'ৰীলেন",
+    "subtitle": "জ্ঞানমূলক সংযুক্তি ডেচব'ৰ্ড"
+  },
+  "patient": {
+    "age": "বয়স",
+    "years": "বছৰ",
+    "daysSinceSession": "শেষ অধিবেশনৰ পৰা দিন",
+    "totalSessions": "মুঠ অধিবেশন",
+    "enrolled": "নামভৰ্তি",
+    "switchProfile": "প্ৰ'ফাইল সলনি কৰক",
+    "riskTier": "বিপদ স্তৰ"
+  },
+  "riskTiers": {
+    "stable": "স্থিৰ",
+    "monitor": "নিৰীক্ষণ",
+    "attention-needed": "মনোযোগ প্ৰয়োজন"
+  },
+  "categories": {
+    "reminiscence": "স্মৃতিচাৰণ",
+    "dailyRoutine": "দৈনিক ৰুটিন স্মৰণ",
+    "attention": "মনোযোগ আৰু একাগ্ৰতা",
+    "patternRecognition": "আৰ্হি চিনাক্তকৰণ"
+  },
+  "dashboard": {
+    "title": "জ্ঞানমূলক প্ৰদৰ্শন",
+    "responseTime": "প্ৰতিক্ৰিয়া সময়",
+    "responseTimeMs": "প্ৰতিক্ৰিয়া সময় (মি.ছে.)",
+    "accuracy": "স্মৰণ সঠিকতা",
+    "accuracyPercent": "সঠিকতা (%)",
+    "dwellTime": "থকা সময়",
+    "adaptiveDifficulty": "অভিযোজিত কঠিনতা",
+    "level": "স্তৰ",
+    "easeFactor": "সহজতা কাৰক",
+    "interval": "ব্যৱধান",
+    "intervalDays": "{{count}} দিন",
+    "intervalDays_plural": "{{count}} দিন",
+    "repetitions": "পুনৰাবৃত্তি",
+    "session": "অধিবেশন",
+    "sessions": "অধিবেশন",
+    "milliseconds": "মি.ছে.",
+    "trend": "অধিবেশনসমূহত ধাৰা"
+  },
+  "anomaly": {
+    "title": "বিসংগতি চিনাক্তকৰণ",
+    "disclaimer": "সংযুক্তি আৰ্হি সংকেত — নিদানমূলক নিৰ্ধাৰণ নহয়",
+    "baseline": "ভিত্তি ৰেখা",
+    "deviationBand": "±1σ বিচ্যুতি বেণ্ড",
+    "threshold": "সীমা",
+    "zScore": "Z-স্ক'ৰ",
+    "flagged": "চিহ্নিত",
+    "noAnomalies": "কোনো বিসংগতি পোৱা নগ'ল",
+    "clickToExpand": "বিৱৰণ চাবলৈ ক্লিক কৰক",
+    "faceDelay": "মুখ/ব্যক্তি চিনাক্তকৰণ পলম",
+    "faceDelayDesc": "ব্যক্তি-ফটো প্ৰমপ্টত প্ৰতিক্ৰিয়া সময় ভিত্তি ৰেখাতকৈ বৃদ্ধি হৈছে",
+    "placeConfusion": "স্থান চিনাক্তকৰণ বিভ্ৰান্তি",
+    "placeConfusionDesc": "স্থান-টেগ কৰা স্মৃতি ফ্ৰেমত সঠিকতা হ্ৰাস",
+    "sequenceRecall": "ঘটনা/ক্ৰম স্মৰণ অৱনতি",
+    "sequenceRecallDesc": "দৈনিক ৰুটিন স্মৰণ সঠিকতাত সাংখ্যিকভাৱে চিহ্নিত বিভক্তি বিন্দুৰ সৈতে অৱনতি",
+    "attentionVariance": "মনোযোগ আৰ্হি বিচ্যুতি",
+    "attentionVarianceDesc": "প্ৰতিক্ৰিয়া সময়ৰ সংগতি স্বাৱিক সীমাতকৈ বেছি"
+  },
+  "alerts": {
+    "title": "যত্নকাৰী সতৰ্কতা আৰু সোঁৱৰণী",
+    "type": "প্ৰকাৰ",
+    "message": "বাৰ্তা",
+    "scheduled": "নিৰ্ধাৰিত",
+    "status": "স্থিতি",
+    "sent": "পঠিওৱা",
+    "acknowledged": "স্বীকৃত",
+    "missed": "হেৰুৱা",
+    "medicine": "ঔষধ",
+    "hydration": "জলযোজন",
+    "appointment": "সাক্ষাৎকাৰ",
+    "engagement": "সংযুক্তি সতৰ্কতা",
+    "thresholdTitle": "সতৰ্কতা সীমা তৰ্ক",
+    "thresholdDesc": "{{count}} টা লগাতাৰ অধিবেশন ভিত্তি ৰেখাৰ তলত হ'লে সতৰ্কতা",
+    "thresholdCurrent": "বৰ্তমান ধাৰা",
+    "thresholdOf": "{{count}} ৰ ভিতৰত"
+  },
+  "language": {
+    "label": "ভাষা",
+    "en": "EN",
+    "hi": "HI",
+    "as": "AS",
+    "bn": "BN",
+    "mn": "MN"
+  },
+  "summary": {
+    "stable": "এই সপ্তাহত, সকলো শিতানতে {{patientName}}ৰ অংশগ্ৰহণ স্থিৰ।",
+    "anomalyDetected": "যোৱা {{sessionCount}} টা চেচনত {{patientName}}য়ে এটা নতুন ধাৰা দেখুৱাইছে — {{anomalyLabel}}, অলপ চকু দিয়াটো ভাল হ'ব।",
+    "viewDetails": "বিৱৰণ চাওক"
+  }
+}

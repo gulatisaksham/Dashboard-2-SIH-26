@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces", Georgia, Cambria, "Times New Roman", serif;
+
+  --color-bg-primary: #FAF9F7;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-alt: #F3F1EE;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #5C5C5C;
+  --color-text-muted: #8A8A8A;
+  --color-accent: #1A6B5A;
+  --color-accent-light: #E6F2EF;
+  --color-accent-dark: #145247;
+  --color-chart-secondary: #4A7FB5;
+  --color-chart-tertiary: #8B6BB5;
+  --color-alert-red: #C53030;
+  --color-alert-amber: #B7791F;
+  --color-alert-green: #276749;
+  --color-border: #E2E0DC;
+  --color-border-strong: #C8C5BF;
+}
+
+/* Base styles */
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.375rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+/* Consistent card styling */
+.card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.card-compact {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-surface-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}

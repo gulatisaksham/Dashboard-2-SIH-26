@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "MemoryLane",
+    "subtitle": "Cognitive Engagement Dashboard"
+  },
+  "patient": {
+    "age": "Age",
+    "years": "years",
+    "daysSinceSession": "Days since last session",
+    "totalSessions": "Total sessions",
+    "enrolled": "Enrolled",
+    "switchProfile": "Switch profile",
+    "riskTier": "Risk tier"
+  },
+  "riskTiers": {
+    "stable": "Stable",
+    "monitor": "Monitor",
+    "attention-needed": "Attention Needed"
+  },
+  "categories": {
+    "reminiscence": "Reminiscence",
+    "dailyRoutine": "Daily Routine Recall",
+    "attention": "Attention & Concentration",
+    "patternRecognition": "Pattern Recognition"
+  },
+  "dashboard": {
+    "title": "Cognitive Performance",
+    "responseTime": "Response Time",
+    "responseTimeMs": "Response Time (ms)",
+    "accuracy": "Recall Accuracy",
+    "accuracyPercent": "Accuracy (%)",
+    "dwellTime": "Dwell Time",
+    "adaptiveDifficulty": "Adaptive Difficulty",
+    "level": "Level",
+    "easeFactor": "Ease Factor",
+    "interval": "Interval",
+    "intervalDays": "{{count}} day",
+    "intervalDays_plural": "{{count}} days",
+    "repetitions": "Repetitions",
+    "session": "Session",
+    "sessions": "Sessions",
+    "milliseconds": "ms",
+    "trend": "Trend over sessions"
+  },
+  "anomaly": {
+    "title": "Anomaly Detection",
+    "disclaimer": "Engagement pattern signal — not a diagnostic determination",
+    "baseline": "Baseline",
+    "deviationBand": "±1σ Deviation Band",
+    "threshold": "Threshold",
+    "zScore": "Z-Score",
+    "flagged": "Flagged",
+    "noAnomalies": "No anomalies detected",
+    "clickToExpand": "Click to view details",
+    "faceDelay": "Face/Person Recognition Delay",
+    "faceDelayDesc": "Response time on people-photo prompts increasing relative to baseline",
+    "placeConfusion": "Place Recognition Confusion",
+    "placeConfusionDesc": "Accuracy drop isolated to location-tagged memory frames",
+    "sequenceRecall": "Event/Sequence Recall Degrading",
+    "sequenceRecallDesc": "Daily routine recall accuracy declining with statistically flagged inflection point",
+    "attentionVariance": "Attention Pattern Variance",
+    "attentionVarianceDesc": "Response time consistency (variance per session window) exceeding normal range"
+  },
+  "alerts": {
+    "title": "Caregiver Alerts & Reminders",
+    "type": "Type",
+    "message": "Message",
+    "scheduled": "Scheduled",
+    "status": "Status",
+    "sent": "Sent",
+    "acknowledged": "Acknowledged",
+    "missed": "Missed",
+    "medicine": "Medicine",
+    "hydration": "Hydration",
+    "appointment": "Appointment",
+    "engagement": "Engagement Alert",
+    "thresholdTitle": "Alert Threshold Logic",
+    "thresholdDesc": "{{count}} consecutive sessions below baseline triggers an alert",
+    "thresholdCurrent": "Current streak",
+    "thresholdOf": "of {{count}}"
+  },
+  "language": {
+    "label": "Language",
+    "en": "EN",
+    "hi": "HI",
+    "as": "AS",
+    "bn": "BN",
+    "mn": "MN"
+  },
+  "summary": {
+    "stable": "This week, {{patientName}}'s engagement is stable across all categories.",
+    "anomalyDetected": "{{patientName}} has shown a new pattern — {{anomalyLabel}} over the last {{sessionCount}} sessions, worth a gentle check-in.",
+    "viewDetails": "View details"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "app": {
+    "title": "मेमोरीलेन",
+    "subtitle": "संज्ञानात्मक सहभागिता डैशबोर्ड"
+  },
+  "patient": {
+    "age": "आयु",
+    "years": "वर्ष",
+    "daysSinceSession": "अंतिम सत्र से दिन",
+    "totalSessions": "कुल सत्र",
+    "enrolled": "नामांकित",
+    "switchProfile": "प्रोफ़ाइल बदलें",
+    "riskTier": "जोखिम स्तर"
+  },
+  "riskTiers": {
+    "stable": "स्थिर",
+    "monitor": "निगरानी",
+    "attention-needed": "ध्यान आवश्यक"
+  },
+  "categories": {
+    "reminiscence": "स्मरण",
+    "dailyRoutine": "दैनिक दिनचर्या स्मरण",
+    "attention": "ध्यान और एकाग्रता",
+    "patternRecognition": "पैटर्न पहचान"
+  },
+  "dashboard": {
+    "title": "संज्ञानात्मक प्रदर्शन",
+    "responseTime": "प्रतिक्रिया समय",
+    "responseTimeMs": "प्रतिक्रिया समय (मि.से.)",
+    "accuracy": "स्मरण सटीकता",
+    "accuracyPercent": "सटीकता (%)",
+    "dwellTime": "ठहराव समय",
+    "adaptiveDifficulty": "अनुकूली कठिनाई",
+    "level": "स्तर",
+    "easeFactor": "सरलता कारक",
+    "interval": "अंतराल",
+    "intervalDays": "{{count}} दिन",
+    "intervalDays_plural": "{{count}} दिन",
+    "repetitions": "दोहराव",
+    "session": "सत्र",
+    "sessions": "सत्र",
+    "milliseconds": "मि.से.",
+    "trend": "सत्रों में रुझान"
+  },
+  "anomaly": {
+    "title": "विसंगति पहचान",
+    "disclaimer": "सहभागिता पैटर्न संकेत — नैदानिक निर्धारण नहीं",
+    "baseline": "आधार रेखा",
+    "deviationBand": "±1σ विचलन बैंड",
+    "threshold": "सीमा",
+    "zScore": "Z-स्कोर",
+    "flagged": "चिह्नित",
+    "noAnomalies": "कोई विसंगति नहीं पाई गई",
+    "clickToExpand": "विवरण देखने के लिए क्लिक करें",
+    "faceDelay": "चेहरा/व्यक्ति पहचान विलंब",
+    "faceDelayDesc": "व्यक्ति-फोटो संकेतों पर प्रतिक्रिया समय आधार रेखा की तुलना में बढ़ रहा है",
+    "placeConfusion": "स्थान पहचान भ्रम",
+    "placeConfusionDesc": "स्थान-टैग की गई स्मृति फ़्रेम में सटीकता गिरावट",
+    "sequenceRecall": "घटना/क्रम स्मरण क्षय",
+    "sequenceRecallDesc": "दैनिक दिनचर्या स्मरण सटीकता में सांख्यिकीय रूप से चिह्नित विभक्ति बिंदु के साथ गिरावट",
+    "attentionVariance": "ध्यान पैटर्न विचलन",
+    "attentionVarianceDesc": "प्रतिक्रिया समय संगतता सामान्य सीमा से अधिक"
+  },
+  "alerts": {
+    "title": "देखभालकर्ता अलर्ट और अनुस्मारक",
+    "type": "प्रकार",
+    "message": "संदेश",
+    "scheduled": "अनुसूचित",
+    "status": "स्थिति",
+    "sent": "भेजा गया",
+    "acknowledged": "स्वीकृत",
+    "missed": "छूटा",
+    "medicine": "दवाई",
+    "hydration": "जलयोजन",
+    "appointment": "अपॉइंटमेंट",
+    "engagement": "सहभागिता अलर्ट",
+    "thresholdTitle": "अलर्ट सीमा तर्क",
+    "thresholdDesc": "{{count}} लगातार सत्र आधार रेखा से नीचे होने पर अलर्ट",
+    "thresholdCurrent": "वर्तमान श्रृंखला",
+    "thresholdOf": "{{count}} में से"
+  },
+  "language": {
+    "label": "भाषा",
+    "en": "EN",
+    "hi": "HI",
+    "as": "AS",
+    "bn": "BN",
+    "mn": "MN"
+  },
+  "summary": {
+    "stable": "इस सप्ताह, {{patientName}} की भागीदारी सभी श्रेणियों में स्थिर है।",
+    "anomalyDetected": "{{patientName}} ने एक नया पैटर्न दिखाया है — पिछले {{sessionCount}} सत्रों में {{anomalyLabel}}, थोड़ा ध्यान देने योग्य है।",
+    "viewDetails": "विवरण देखें"
+  }
+}

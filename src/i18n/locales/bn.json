@@ -1,0 +1,90 @@
+{
+  "app": {
+    "title": "মেমোরিলেন",
+    "subtitle": "জ্ঞানমূলক সম্পৃক্ততা ড্যাশবোর্ড"
+  },
+  "patient": {
+    "age": "বয়স",
+    "years": "বছর",
+    "daysSinceSession": "শেষ সেশন থেকে দিন",
+    "totalSessions": "মোট সেশন",
+    "enrolled": "নথিভুক্ত",
+    "switchProfile": "প্রোফাইল পরিবর্তন করুন",
+    "riskTier": "ঝুঁকি স্তর"
+  },
+  "riskTiers": {
+    "stable": "স্থিতিশীল",
+    "monitor": "পর্যবেক্ষণ",
+    "attention-needed": "মনোযোগ প্রয়োজন"
+  },
+  "categories": {
+    "reminiscence": "স্মৃতিচারণ",
+    "dailyRoutine": "দৈনিক রুটিন স্মরণ",
+    "attention": "মনোযোগ ও একাগ্রতা",
+    "patternRecognition": "প্যাটার্ন সনাক্তকরণ"
+  },
+  "dashboard": {
+    "title": "জ্ঞানমূলক কর্মক্ষমতা",
+    "responseTime": "প্রতিক্রিয়া সময়",
+    "responseTimeMs": "প্রতিক্রিয়া সময় (মি.সে.)",
+    "accuracy": "স্মরণ নির্ভুলতা",
+    "accuracyPercent": "নির্ভুলতা (%)",
+    "dwellTime": "অবস্থান সময়",
+    "adaptiveDifficulty": "অভিযোজিত কঠিনতা",
+    "level": "স্তর",
+    "easeFactor": "সহজতা ফ্যাক্টর",
+    "interval": "ব্যবধান",
+    "intervalDays": "{{count}} দিন",
+    "intervalDays_plural": "{{count}} দিন",
+    "repetitions": "পুনরাবৃত্তি",
+    "session": "সেশন",
+    "sessions": "সেশন",
+    "milliseconds": "মি.সে.",
+    "trend": "সেশন জুড়ে প্রবণতা"
+  },
+  "anomaly": {
+    "title": "অসঙ্গতি সনাক্তকরণ",
+    "disclaimer": "সম্পৃক্ততা প্যাটার্ন সংকেত — ডায়াগনস্টিক নির্ধারণ নয়",
+    "baseline": "বেসলাইন",
+    "deviationBand": "±1σ বিচ্যুতি ব্যান্ড",
+    "threshold": "সীমা",
+    "zScore": "Z-স্কোর",
+    "flagged": "চিহ্নিত",
+    "noAnomalies": "কোনো অসঙ্গতি পাওয়া যায়নি",
+    "clickToExpand": "বিস্তারিত দেখতে ক্লিক করুন",
+    "faceDelay": "মুখ/ব্যক্তি সনাক্তকরণ বিলম্ব",
+    "faceDelayDesc": "ব্যক্তি-ফটো প্রম্পটে প্রতিক্রিয়া সময় বেসলাইনের তুলনায় বাড়ছে",
+    "placeConfusion": "স্থান সনাক্তকরণ বিভ্রান্তি",
+    "placeConfusionDesc": "স্থান-ট্যাগ করা স্মৃতি ফ্রেমে নির্ভুলতা হ্রাস",
+    "sequenceRecall": "ঘটনা/ক্রম স্মরণ অবনতি",
+    "sequenceRecallDesc": "দৈনিক রুটিন স্মরণ নির্ভুলতায় পরিসংখ্যানগতভাবে চিহ্নিত বিভক্তি বিন্দুর সাথে অবনতি",
+    "attentionVariance": "মনোযোগ প্যাটার্ন বিচ্যুতি",
+    "attentionVarianceDesc": "প্রতিক্রিয়া সময়ের সামঞ্জস্য স্বাভাবিক সীমার বাইরে"
+  },
+  "alerts": {
+    "title": "পরিচর্যাকারী সতর্কতা ও অনুস্মারক",
+    "type": "ধরন",
+    "message": "বার্তা",
+    "scheduled": "নির্ধারিত",
+    "status": "অবস্থা",
+    "sent": "প্রেরিত",
+    "acknowledged": "স্বীকৃত",
+    "missed": "মিস করা",
+    "medicine": "ওষুধ",
+    "hydration": "জলযোজন",
+    "appointment": "অ্যাপয়েন্টমেন্ট",
+    "engagement": "সম্পৃক্ততা সতর্কতা",
+    "thresholdTitle": "সতর্কতা সীমা যুক্তি",
+    "thresholdDesc": "{{count}} টি পরপর সেশন বেসলাইনের নীচে হলে সতর্কতা",
+    "thresholdCurrent": "বর্তমান ধারা",
+    "thresholdOf": "{{count}} এর মধ্যে"
+  },
+  "language": {
+    "label": "ভাষা",
+    "en": "EN",
+    "hi": "HI",
+    "as": "AS",
+    "bn": "BN",
+    "mn": "MN"
+  }
+}

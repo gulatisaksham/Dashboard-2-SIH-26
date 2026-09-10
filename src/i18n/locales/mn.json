@@ -1,0 +1,90 @@
+{
+  "app": {
+    "title": "মেমোরিলেন",
+    "subtitle": "কগনিটিভ এংগেজমেন্ট ড্যাশবোর্ড"
+  },
+  "patient": {
+    "age": "চহি",
+    "years": "চহি",
+    "daysSinceSession": "মরুমদা সেসনদগী নুমিৎ",
+    "totalSessions": "পুম্নমক সেসন",
+    "enrolled": "মিং থোনবা",
+    "switchProfile": "প্রোফাইল হোংদোক্লু",
+    "riskTier": "রিস্ক থাক"
+  },
+  "riskTiers": {
+    "stable": "লেপ্পা",
+    "monitor": "য়েংশিনবা",
+    "attention-needed": "চেকশিন্নবা মথৌ তাই"
+  },
+  "categories": {
+    "reminiscence": "নিংশিংবা",
+    "dailyRoutine": "নুমিৎ খুদিংগী থবক নিংশিংবা",
+    "attention": "চেকশিনবা অমসুং ওইবা পীবা",
+    "patternRecognition": "পেটর্ন খংহনবা"
+  },
+  "dashboard": {
+    "title": "কগনিটিভ পারফরমেন্স",
+    "responseTime": "পাউখুম পীরিয়দ",
+    "responseTimeMs": "পাউখুম পীরিয়দ (মি.সে.)",
+    "accuracy": "নিংশিংবা অচুম্বা",
+    "accuracyPercent": "অচুম্বা (%)",
+    "dwellTime": "লেপ্পা মতম",
+    "adaptiveDifficulty": "এদাপটিভ দিফিকল্টি",
+    "level": "থাক",
+    "easeFactor": "লাইথোকপা ফেক্টর",
+    "interval": "মরক্তা",
+    "intervalDays": "নুমিৎ {{count}}",
+    "intervalDays_plural": "নুমিৎ {{count}}",
+    "repetitions": "অমুক হন্না তৌবা",
+    "session": "সেসন",
+    "sessions": "সেসনশীং",
+    "milliseconds": "মি.সে.",
+    "trend": "সেসনশীংদা ত্রেন্দ"
+  },
+  "anomaly": {
+    "title": "এনোমালি দিটেক্সন",
+    "disclaimer": "এংগেজমেন্ট পেটর্ন সিগনাল — দায়েগনোস্টিক দিটর্মিনেসন নত্তে",
+    "baseline": "বেসলাইন",
+    "deviationBand": "±1σ দিভিয়েসন বেন্দ",
+    "threshold": "থ্রেসহোল্দ",
+    "zScore": "Z-স্কোর",
+    "flagged": "ফ্লেগ তৌবা",
+    "noAnomalies": "এনোমালি ফংলে",
+    "clickToExpand": "অকুপ্পা য়েংনবগীদমক ক্লিক তৌ",
+    "faceDelay": "মায়/মীওই খংহনবদা হকথেংননবা",
+    "faceDelayDesc": "মীওই-ফোটো প্রম্পটতা পাউখুম পীরিয়দ বেসলাইনদগী হেন্না ৱাংই",
+    "placeConfusion": "মফম খংহনবা মায়োক্নবা",
+    "placeConfusionDesc": "মফম-টেগ তৌবা মেমোরি ফ্রেমদা অচুম্বা হন্থবা",
+    "sequenceRecall": "থৌদোক/ক্রম নিংশিংবা হন্থবা",
+    "sequenceRecallDesc": "নুমিৎ খুদিংগী ৰুটিন নিংশিংবা অচুম্বা হন্থবা",
+    "attentionVariance": "চেকশিনবা পেটর্ন ভেরিয়েন্স",
+    "attentionVarianceDesc": "পাউখুম পীরিয়দকী কনসিস্টেন্সি নর্মাল রেঞ্জদগী হেন্না"
+  },
+  "alerts": {
+    "title": "কেয়ারগিভর এলার্ট অমসুং রিমাইন্দর",
+    "type": "মখল",
+    "message": "পাউ",
+    "scheduled": "সেদ্যুল তৌবা",
+    "status": "ষ্টেটস",
+    "sent": "থাদোকখ্রে",
+    "acknowledged": "একনোলেজ তৌখ্রে",
+    "missed": "মিস তৌখ্রে",
+    "medicine": "লাইশু",
+    "hydration": "ঈশিং থক্নবা",
+    "appointment": "এপোইন্টমেন্ট",
+    "engagement": "এংগেজমেন্ট এলার্ট",
+    "thresholdTitle": "এলার্ট থ্রেসহোল্দ লজিক",
+    "thresholdDesc": "বেসলাইনদগী মখা সেসন {{count}} লুম্না লাকপদা এলার্ট পীরি",
+    "thresholdCurrent": "হৌজিক্কী ষ্ট্রিক",
+    "thresholdOf": "{{count}} গী মনুংদা"
+  },
+  "language": {
+    "label": "লোন",
+    "en": "EN",
+    "hi": "HI",
+    "as": "AS",
+    "bn": "BN",
+    "mn": "MN"
+  }
+}
